@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getEpisodeAsync } from "../redux/episodeSlice";
+import {
+  getEpisodeAsync,
+  getEpisodeCharacterAsync,
+} from "../redux/episodeSlice";
 import { RootState } from "../redux/store";
 
 function Episode() {
@@ -15,6 +18,15 @@ function Episode() {
     }
   }, [id, dispatch]);
 
+  useEffect(() => {
+    episode.response.characters.map((url: string) => {
+      let id = url.split("/")[url.split("/").length - 1];
+      dispatch(getEpisodeCharacterAsync(id));
+
+      return id;
+    });
+  }, [episode.response.characters, dispatch]);
+
   return (
     <>
       <main>
@@ -26,19 +38,17 @@ function Episode() {
       </nav>
 
       <section>
-        <ul className="flex flex-row flex-wrap w-1/2 items-center m-auto mt-8">
-          {episode.response.characters.map((character) => (
+        {/* <ul className="flex flex-row flex-wrap w-1/2 items-center m-auto mt-8">
+          {episode.characters.map((character) => (
             <Link
               className="border p-4 w-1/2 bg-slate-400 text-yellow-200"
-              to={`/character/${
-                character.split("/")[character.split("/").length - 1]
-              }`}
-              key={character}
+              to={`/character/${character.id}`}
+              key={character.id}
             >
-              {character}
+              {character.name}
             </Link>
           ))}
-        </ul>
+        </ul> */}
       </section>
     </>
   );

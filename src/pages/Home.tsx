@@ -6,8 +6,6 @@ import { RootState } from "../redux/store";
 function Home() {
   const episodes = useSelector((state: RootState) => state.season);
 
-  console.log(episodes);
-
   return (
     <section>
       <ul className="flex flex-row flex-wrap w-1/2 items-center m-auto mt-8">
