@@ -17,7 +17,7 @@ export type CharacterResponse = {
   results: Character[];
 };
 
-export type EpisodeResponse = {
+export type SeasonResponse = {
   info: Info;
   results: Episode[];
 };

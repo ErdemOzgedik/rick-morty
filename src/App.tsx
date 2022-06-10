@@ -5,18 +5,17 @@ import "./App.css";
 import Character from "./pages/Character";
 import Episode from "./pages/Episode";
 import Home from "./pages/Home";
-import { getEpisodesAsync } from "./redux/episodeSlice";
+import { getSeasonAsync } from "./redux/seasonSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getEpisodesAsync());
+    dispatch(getSeasonAsync("1"));
   }, [dispatch]);
 
   return (
-    <div className="App">
-      <h1>Rick & morty!</h1>
+    <div className="h-screen">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="episode/:id" element={<Episode />} />

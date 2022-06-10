@@ -1,31 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { EpisodeResponse } from "../types/apitypes";
-import { GetEpisodes } from "./apiCalls";
+import { Episode } from "../types/apitypes";
+import { GetEpisode } from "./apiCalls";
 
-export const getEpisodesAsync = createAsyncThunk(
-  "episode",
-  async (): Promise<EpisodeResponse> => {
-    const response = await GetEpisodes();
+export const getEpisodeAsync = createAsyncThunk(
+  `episode/detail`,
+  async (id: string): Promise<Episode> => {
+    const response = await GetEpisode(id);
 
     return response;
   }
 );
 
 type Example = {
-  response: EpisodeResponse;
+  response: Episode;
   pending: boolean;
   error: boolean;
 };
 
 const initialState: Example = {
   response: {
-    info: {
-      count: 0,
-      pages: 0,
-      next: "",
-      prev: "",
-    },
-    results: [],
+    id: 0,
+    name: "",
+    url: "",
+    characters: [],
+    created: "",
+    episode: "",
+    air_date: "",
   },
   pending: false,
   error: false,
@@ -35,24 +35,24 @@ export const episodeSlice = createSlice({
   name: "episode",
   initialState: initialState,
   reducers: {
-    getEpisodes: (state, action) => {
+    getEpisode: (state, action) => {
       state.response = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getEpisodesAsync.fulfilled, (state, { payload }) => {
+    builder.addCase(getEpisodeAsync.fulfilled, (state, { payload }) => {
       state.response = payload;
       state.pending = false;
     });
-    builder.addCase(getEpisodesAsync.pending, (state) => {
+    builder.addCase(getEpisodeAsync.pending, (state) => {
       state.pending = true;
     });
-    builder.addCase(getEpisodesAsync.rejected, (state) => {
+    builder.addCase(getEpisodeAsync.rejected, (state) => {
       state.error = true;
       state.pending = false;
     });
   },
 });
 
-export const { getEpisodes } = episodeSlice.actions;
+export const { getEpisode } = episodeSlice.actions;
 export default episodeSlice.reducer;
