@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getEpisodesAsync } from "../redux/episodeSlice";
 import { RootState } from "../redux/store";
 
 function Home() {
-  const dispatch = useDispatch();
   const episodes = useSelector((state: RootState) => state.episodes);
-
-  useEffect(() => {
-    dispatch(getEpisodesAsync());
-  }, [dispatch]);
 
   console.log(episodes);
 
