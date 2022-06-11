@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { RootState } from "../redux/store";
 
 function Home() {
@@ -9,7 +8,6 @@ function Home() {
 
   return (
     <div className="flex flex-col">
-      <Navbar />
       <div className="items-center text-center justify-center p-6 text-white text-2xl">
         Season 1 Episodes
       </div>

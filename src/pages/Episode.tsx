@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from "../components/Card";
 import {
   getEpisodeAsync,
@@ -37,12 +37,32 @@ function Episode() {
 
   return (
     <div className="container m-auto flex flex-col shadow-2xl">
-      <div className="m-auto flex flex-col h-64 rounded-2xl w-4/5 sm:flex-row bg-green-100 sm:justify-center sm:items-center">
-        <div className="text-base sm:text-xl w-3/5">
-          {episode.response.episode} - {episode.response.name}
-        </div>
-        <div className="text-sm flex-1 text-end">
-          {episode.response.air_date}
+      <div className="m-auto flex flex-col rounded-2xl w-4/5 sm:flex-row sm:justify-center sm:items-center">
+        <div className="bg-white rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
+          <div className="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-white">
+            LOGO
+          </div>
+          <div className="mt-4">
+            <h1 className="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">
+              {episode.response.name}
+            </h1>
+            <p className="mt-4 text-md text-gray-600">
+              But I must explain to you how all this mistaken idea of denouncing
+              pleasure and praising pain was born and I will give you a complete
+              account of the system, and expound the actual teachings of the
+              great explorer of the truth, the master-builder of human happines.
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="mt-4 flex items-center space-x-4 py-6">
+                <div className="text-sm font-semibold">
+                  Created At •{" "}
+                  <span className="font-normal">
+                    {episode.response.created}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
