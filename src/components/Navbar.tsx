@@ -6,7 +6,7 @@ export default function Navbar() {
   const currentSeason = 1;
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 mb-3 shadow-md hover:bg-yellow-400 transition-all duration-500 ease-in-out">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 shadow-md hover:bg-yellow-400 transition-all duration-500 ease-in-out">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <div className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
@@ -27,10 +27,10 @@ export default function Navbar() {
             }
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              {Array.from(Array(5).keys()).map((i) => (
-                <li key={i}>
+              {Array.from(Array(5).keys()).map((index) => (
+                <li key={index}>
                   <div className="px-3 cursor-pointer py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 transition-all duration-500 ease-in-out">
-                    <span className="ml-2">Season {i + 1}</span>
+                    <span className="ml-2">Season {index + 1}</span>
                   </div>
                 </li>
               ))}
