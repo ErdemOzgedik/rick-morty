@@ -6,7 +6,7 @@ export default function Navbar() {
   const currentSeason = 1;
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 shadow-md hover:bg-yellow-400 transition-all duration-500 ease-in-out">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 shadow-md bg-black opacity-80 hover:bg-yellow-400 hover:opacity-[1] transition-all duration-700 ease-in-out">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <div className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">

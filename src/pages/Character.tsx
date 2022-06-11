@@ -23,10 +23,10 @@ function Character() {
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="character"
-            className="lg:w-2/5 w-full bg-no-repeat bg-cover bg-center rounded-2xl lg:rounded-l-2xl"
+            className="lg:w-2/5 w-full bg-no-repeat bg-cover bg-center rounded-2xl lg:rounded-none lg:rounded-l-2xl"
             src={character.response.image}
           />
-          <div className="lg:w-3/5 w-full lg:pl-10 lg:py-6 mt-6 p-4 lg:mt-0 bg-yellow-400 rounded-2xl lg:rounded-r-2xl">
+          <div className="lg:w-3/5 w-full lg:pl-10 lg:py-6 mt-6 p-4 lg:mt-0 bg-black opacity-80 rounded-2xl lg:rounded-none lg:rounded-r-2xl">
             <h2 className="text-sm title-font text-white tracking-widest">
               CHARACTER NAME
             </h2>
@@ -58,7 +58,7 @@ function Character() {
               cardigan.
             </p>
 
-            <div className="flex items-center">
+            <div className="flex items-center mt-4">
               <span className="title-font font-medium text-2xl text-white">
                 <MdLocationOn />
               </span>
