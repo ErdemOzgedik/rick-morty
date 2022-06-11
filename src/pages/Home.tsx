@@ -20,7 +20,12 @@ function Home() {
             to={`/episode/${episode.id}`}
             key={episode.id}
           >
-            {episode.episode} - {episode.name} - {episode.air_date}
+            <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center">
+              <div className="text-base sm:text-xl w-3/5">
+                {episode.episode} - {episode.name}
+              </div>
+              <div className="text-sm flex-1 text-end">{episode.air_date}</div>
+            </div>
           </Link>
         ))}
       </ul>
