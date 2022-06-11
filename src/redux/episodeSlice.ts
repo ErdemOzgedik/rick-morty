@@ -47,33 +47,17 @@ export const episodeSlice = createSlice({
   name: "episode",
   initialState: initialState,
   reducers: {
-    getEpisode: (state, action) => {
-      state.response = action.payload;
-    },
     sortCharacters: (state) => {
       state.characters = [...state.characters].sort((a, b) =>
         a.name.localeCompare(b.name)
       );
-    },
-    resetEpisodeState: (state) => {
-      state.response = {
-        id: 0,
-        name: "",
-        url: "",
-        characters: [],
-        created: "",
-        episode: "",
-        air_date: "",
-      };
-      state.characters = [];
-      state.pending = false;
-      state.error = false;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getEpisodeAsync.fulfilled, (state, { payload }) => {
       state.response = payload;
       state.pending = false;
+      state.characters = [];
     });
     builder.addCase(getEpisodeAsync.pending, (state) => {
       state.pending = true;
@@ -99,6 +83,5 @@ export const episodeSlice = createSlice({
   },
 });
 
-export const { getEpisode, resetEpisodeState, sortCharacters } =
-  episodeSlice.actions;
+export const { sortCharacters } = episodeSlice.actions;
 export default episodeSlice.reducer;

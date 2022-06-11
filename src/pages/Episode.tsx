@@ -6,7 +6,6 @@ import Card from "../components/Card";
 import {
   getEpisodeAsync,
   getEpisodeCharacterAsync,
-  resetEpisodeState,
   sortCharacters,
 } from "../redux/episodeSlice";
 import { RootState } from "../redux/store";
@@ -21,25 +20,20 @@ function Episode() {
   };
 
   useEffect(() => {
-    if (id) {
+    if (id && id !== episode.response.id.toString()) {
       dispatch(getEpisodeAsync(id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, episode.response.id]);
 
   useEffect(() => {
-    episode.response.characters.map((url: string) => {
-      let id = url.split("/")[url.split("/").length - 1];
-      dispatch(getEpisodeCharacterAsync(id));
+    if (episode.characters.length === 0)
+      episode.response.characters.map((url: string) => {
+        let id = url.split("/")[url.split("/").length - 1];
+        dispatch(getEpisodeCharacterAsync(id));
 
-      return id;
-    });
-  }, [dispatch, episode.response.characters]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetEpisodeState());
-    };
-  }, [dispatch]);
+        return id;
+      });
+  }, [dispatch, episode.response.characters, episode.characters]);
 
   return (
     <div className="container m-auto flex flex-col shadow-2xl">
