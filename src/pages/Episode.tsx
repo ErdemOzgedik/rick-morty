@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Card from "../components/Card";
 import {
   getEpisodeAsync,
   getEpisodeCharacterAsync,
@@ -35,29 +36,15 @@ function Episode() {
   }, [dispatch]);
 
   return (
-    <>
-      <main>
-        <h2>Episode id {id}!!!</h2>
-        <p>{episode.response.name}</p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
+    <div className="flex flex-col">
+      <div>ERDEM</div>
 
-      <section>
-        <ul className="flex flex-row flex-wrap w-1/2 items-center m-auto mt-8">
-          {episode.characters.map((character) => (
-            <Link
-              className="border p-4 w-1/2 bg-slate-400 text-yellow-200"
-              to={`/character/${character.id}`}
-              key={character.id}
-            >
-              {character.name}
-            </Link>
-          ))}
-        </ul>
-      </section>
-    </>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-4">
+        {episode.characters.map((character) => (
+          <Card key={character.id} character={character} />
+        ))}
+      </div>
+    </div>
   );
 }
 

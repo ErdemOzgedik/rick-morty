@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="h-screen">
+    <div className="bg-bg-asset bg-no-repeat bg-cover bg-center h-screen w-screen overflow-scroll">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="episode/:id" element={<Episode />} />
