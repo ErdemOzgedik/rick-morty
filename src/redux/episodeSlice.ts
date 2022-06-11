@@ -20,6 +20,7 @@ export const getEpisodeAsync = createAsyncThunk(
   }
 );
 
+// baska dosyaya al
 type Example = {
   response: Episode;
   pending: boolean;
@@ -49,11 +50,24 @@ export const episodeSlice = createSlice({
     getEpisode: (state, action) => {
       state.response = action.payload;
     },
+    resetEpisodeState: (state) => {
+      state.response = {
+        id: 0,
+        name: "",
+        url: "",
+        characters: [],
+        created: "",
+        episode: "",
+        air_date: "",
+      };
+      state.characters = [];
+      state.pending = false;
+      state.error = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getEpisodeAsync.fulfilled, (state, { payload }) => {
       state.response = payload;
-      state.characters = [];
       state.pending = false;
     });
     builder.addCase(getEpisodeAsync.pending, (state) => {
@@ -80,5 +94,5 @@ export const episodeSlice = createSlice({
   },
 });
 
-export const { getEpisode } = episodeSlice.actions;
+export const { getEpisode, resetEpisodeState } = episodeSlice.actions;
 export default episodeSlice.reducer;

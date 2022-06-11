@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import {
   getEpisodeAsync,
   getEpisodeCharacterAsync,
+  resetEpisodeState,
 } from "../redux/episodeSlice";
 import { RootState } from "../redux/store";
 
@@ -16,7 +17,7 @@ function Episode() {
     if (id) {
       dispatch(getEpisodeAsync(id));
     }
-  }, [id, dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     episode.response.characters.map((url: string) => {
@@ -25,7 +26,13 @@ function Episode() {
 
       return id;
     });
-  }, [episode.response.characters, dispatch]);
+  }, [dispatch, episode.response.characters]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetEpisodeState());
+    };
+  }, [dispatch]);
 
   return (
     <>
@@ -38,7 +45,7 @@ function Episode() {
       </nav>
 
       <section>
-        {/* <ul className="flex flex-row flex-wrap w-1/2 items-center m-auto mt-8">
+        <ul className="flex flex-row flex-wrap w-1/2 items-center m-auto mt-8">
           {episode.characters.map((character) => (
             <Link
               className="border p-4 w-1/2 bg-slate-400 text-yellow-200"
@@ -48,7 +55,7 @@ function Episode() {
               {character.name}
             </Link>
           ))}
-        </ul> */}
+        </ul>
       </section>
     </>
   );
