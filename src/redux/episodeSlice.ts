@@ -50,6 +50,11 @@ export const episodeSlice = createSlice({
     getEpisode: (state, action) => {
       state.response = action.payload;
     },
+    sortCharacters: (state) => {
+      state.characters = [...state.characters].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+    },
     resetEpisodeState: (state) => {
       state.response = {
         id: 0,
@@ -94,5 +99,6 @@ export const episodeSlice = createSlice({
   },
 });
 
-export const { getEpisode, resetEpisodeState } = episodeSlice.actions;
+export const { getEpisode, resetEpisodeState, sortCharacters } =
+  episodeSlice.actions;
 export default episodeSlice.reducer;

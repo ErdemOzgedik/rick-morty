@@ -7,6 +7,7 @@ import {
   getEpisodeAsync,
   getEpisodeCharacterAsync,
   resetEpisodeState,
+  sortCharacters,
 } from "../redux/episodeSlice";
 import { RootState } from "../redux/store";
 
@@ -14,6 +15,10 @@ function Episode() {
   const { id } = useParams<string>();
   const dispatch = useDispatch();
   const episode = useSelector((state: RootState) => state.episode);
+
+  const handleSort = () => {
+    dispatch(sortCharacters());
+  };
 
   useEffect(() => {
     if (id) {
@@ -72,9 +77,14 @@ function Episode() {
         <div className="mt-4 flex flex-col lg:flex-row gap-4">
           <input
             type="text"
-            className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-gray-900 rounded-lg bg-gray-50 sm:text-md"
           />
-          <div className="w-full bg-black p-4">sdas</div>
+          <div
+            onClick={handleSort}
+            className="w-full text-center bg-black opacity-80 rounded-lg text-yellow-400 p-4 cursor-pointer"
+          >
+            Sort by Name
+          </div>
         </div>
 
         <div className="flex flex-row justify-around flex-wrap">
