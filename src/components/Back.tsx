@@ -11,7 +11,7 @@ function Back() {
   return (
     <div
       onClick={handleClick}
-      className="absolute flex opacity-80 cursor-pointer inset-24 w-16 h-16 text-4xl bg-white rounded-full text-center justify-center items-center hover:bg-black hover:text-yellow-400 hover:opacity-[1] transition-all duration-300 ease-in-out"
+      className="flex opacity-80 cursor-pointer inset-x-1 inset-y-4 lg:rounded-full lg:absolute lg:inset-16 w-full h-12 lg:w-16 lg:h-16 text-3xl bg-white lg;rounded-full text-center justify-center items-center hover:bg-black hover:text-yellow-400 hover:opacity-[1] transition-all duration-300 ease-in-out"
     >
       <BiArrowBack />
     </div>

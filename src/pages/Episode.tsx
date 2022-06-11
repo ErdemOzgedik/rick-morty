@@ -38,7 +38,8 @@ function Episode() {
 
   return (
     <div className="container m-auto flex flex-col shadow-2xl">
-      <div className="m-auto flex flex-col rounded-2xl w-4/5 sm:flex-row sm:justify-center sm:items-center">
+      <Back />
+      <div className="m-auto flex flex-col mt-2 rounded-2xl w-4/5 sm:flex-row sm:justify-center sm:items-center">
         <div className="bg-black opacity-80 rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
           <div className="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-white">
             LOGO
@@ -82,8 +83,6 @@ function Episode() {
           ))}
         </div>
       </div>
-
-      <Back />
     </div>
   );
 }
