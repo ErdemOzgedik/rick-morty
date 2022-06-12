@@ -58,10 +58,10 @@ function Episode() {
               {episode.response.name}
             </h1>
             <p className="mt-4 text-md text-white">
-              But I must explain to you how all this mistaken idea of denouncing
-              pleasure and praising pain was born and I will give you a complete
-              account of the system, and expound the actual teachings of the
-              great explorer of the truth, the master-builder of human happines.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+              quam, provident maiores temporibus, doloremque doloribus iure
+              molestiae dicta labore adipisci autem voluptatibus maxime. Ipsum,
+              delectus tempora corrupti possimus necessitatibus nam?
             </p>
             <div className="flex justify-between items-center">
               <div className="mt-4 flex items-center space-x-4 py-6">

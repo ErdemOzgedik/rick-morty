@@ -3,5 +3,5 @@ export enum SORT_TYPES {
 }
 
 export enum SPECIES_TYPES {
-  human = "human",
+  human = "Human",
 }

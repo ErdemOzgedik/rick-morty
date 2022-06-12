@@ -55,12 +55,14 @@ function Character() {
                 </span>
               </div>
               <p className="leading-relaxed">
-                Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-                sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-                juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-                seitan poutine tumeric. Gastropub blue bottle austin listicle
-                pour-over, neutra jean shorts keytar banjo tattooed umami
-                cardigan.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Placeat labore iure culpa vero eveniet totam, quasi distinctio
+                quod laborum sit, cumque tempore quisquam. Sint explicabo nisi,
+                totam eos fuga doloribus. Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit.Excepturi sapiente quaerat fuga
+                pariatur commodi aspernatur asperiores dolorum illum, sed, id,
+                aut mollitia provident corporis vitae consequatur necessitatibus
+                expedita consequuntur blanditiis.
               </p>
 
               <div className="flex items-center mt-4">
