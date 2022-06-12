@@ -29,6 +29,7 @@ function SearchField({ term, setTerm }: Props) {
       <input
         className="w-full p-4 text-gray-900 rounded-lg bg-gray-50 sm:text-md"
         onChange={handleChange}
+        placeholder="search by name.."
         value={inputVal}
       />
     </div>
