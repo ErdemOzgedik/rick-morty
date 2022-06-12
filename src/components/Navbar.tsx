@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSeason } from "../redux/seasonSlice";
 import { RootState } from "../redux/store";
@@ -28,7 +28,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-              <AiOutlineCloseCircle />
+              {navbarOpen ? <AiOutlineCloseCircle /> : <AiOutlineMenu />}
             </button>
           </div>
           <div
