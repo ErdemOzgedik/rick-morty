@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Character } from "../types/apitypes";
+import { Character, CharacterInitial } from "../types/apitypes";
+import { CHARACTER_ASYNC } from "../types/constants";
 import { GetCharacter } from "./apiCalls";
 
 export const getCharacterAsync = createAsyncThunk(
-  `/character`,
+  CHARACTER_ASYNC,
   async (id: string): Promise<Character> => {
     const response = await GetCharacter(id);
 
@@ -11,14 +12,7 @@ export const getCharacterAsync = createAsyncThunk(
   }
 );
 
-// baska dosyaya al
-type Example = {
-  response: Character;
-  pending: boolean;
-  error: boolean;
-};
-
-const initialState: Example = {
+const initialState: CharacterInitial = {
   response: {
     id: 0,
     name: "",

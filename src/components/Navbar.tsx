@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+
 import { updateSeason } from "../redux/seasonSlice";
 import { RootState } from "../redux/store";
+import { SEASON_COUNT } from "../types/constants";
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -41,7 +43,7 @@ export default function Navbar() {
               className="flex flex-col lg:flex-row list-none lg:ml-auto"
               onClick={handleClick}
             >
-              {Array.from(Array(5).keys()).map((index) => (
+              {Array.from(Array(SEASON_COUNT).keys()).map((index) => (
                 <li
                   key={index}
                   data-id={index + 1}

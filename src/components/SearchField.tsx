@@ -5,7 +5,7 @@ interface Props {
   setTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SearchField({ term, setTerm }: Props) {
+function SearchField({ setTerm }: Props) {
   const [inputVal, setInputVal] = useState("");
 
   const inputRef = useRef("");

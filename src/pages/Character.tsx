@@ -3,9 +3,12 @@ import { RiAliensLine, RiEarthFill } from "react-icons/ri";
 import { MdLocationOn } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+import Back from "../components/Back";
+
 import { getCharacterAsync } from "../redux/characterSlice";
 import { RootState } from "../redux/store";
-import Back from "../components/Back";
+import { SPECIES_TYPES } from "../types/enum";
 
 function Character() {
   const { id } = useParams<string>();
@@ -37,7 +40,7 @@ function Character() {
               </h1>
               <div className="flex mb-4">
                 <span className="flex items-center">
-                  {character.response.species === "Human" ? (
+                  {character.response.species === SPECIES_TYPES.human ? (
                     <RiEarthFill />
                   ) : (
                     <RiAliensLine />

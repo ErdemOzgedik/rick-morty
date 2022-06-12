@@ -44,3 +44,24 @@ export type Character = BaseType & {
   image: string;
   episode: string[];
 };
+
+export type CharacterInitial = {
+  response: Character;
+  pending: boolean;
+  error: boolean;
+};
+
+export type EpisodeInitial = {
+  response: Episode;
+  pending: boolean;
+  error: boolean;
+  characters: Character[];
+  searchedCharacters: Character[];
+};
+
+export type SeasonInitial = {
+  current: string;
+  response: SeasonResponse;
+  pending: boolean;
+  error: boolean;
+};

@@ -18,7 +18,7 @@ function App() {
   }, [dispatch, season.current]);
 
   return (
-    <div className="bg-bg-asset bg-no-repeat bg-cover bg-center h-screen w-screen overflow-scroll">
+    <div className="bg-rick-morty bg-no-repeat bg-cover bg-center h-screen w-screen overflow-scroll">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="episode/:id" element={<Episode />} />

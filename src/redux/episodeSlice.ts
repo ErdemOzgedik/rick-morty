@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Character, Episode } from "../types/apitypes";
+import { Character, Episode, EpisodeInitial } from "../types/apitypes";
+import { EPISODE_ASYNC, EPISODE_CHARACTER_ASYNC } from "../types/constants";
 import { GetCharacter, GetEpisode } from "./apiCalls";
 
 export const getEpisodeCharacterAsync = createAsyncThunk(
-  `episode/character`,
+  EPISODE_CHARACTER_ASYNC,
   async (id: string): Promise<Character> => {
     const response = await GetCharacter(id);
 
@@ -12,7 +13,7 @@ export const getEpisodeCharacterAsync = createAsyncThunk(
 );
 
 export const getEpisodeAsync = createAsyncThunk(
-  `episode/detail`,
+  EPISODE_ASYNC,
   async (id: string): Promise<Episode> => {
     const response = await GetEpisode(id);
 
@@ -20,16 +21,7 @@ export const getEpisodeAsync = createAsyncThunk(
   }
 );
 
-// baska dosyaya al
-type Example = {
-  response: Episode;
-  pending: boolean;
-  error: boolean;
-  characters: Character[];
-  searchedCharacters: Character[];
-};
-
-const initialState: Example = {
+const initialState: EpisodeInitial = {
   response: {
     id: 0,
     name: "",

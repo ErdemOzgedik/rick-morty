@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { SeasonResponse } from "../types/apitypes";
+import { SeasonInitial, SeasonResponse } from "../types/apitypes";
+import { SEASON_ASYNC } from "../types/constants";
 import { GetSeason } from "./apiCalls";
 
 export const getSeasonAsync = createAsyncThunk(
-  "season",
+  SEASON_ASYNC,
   async (id: string): Promise<SeasonResponse> => {
     const response = await GetSeason(id);
 
@@ -11,14 +12,7 @@ export const getSeasonAsync = createAsyncThunk(
   }
 );
 
-type Example = {
-  current: string;
-  response: SeasonResponse;
-  pending: boolean;
-  error: boolean;
-};
-
-const initialState: Example = {
+const initialState: SeasonInitial = {
   current: "1",
   response: {
     info: {
