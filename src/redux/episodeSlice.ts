@@ -67,6 +67,7 @@ export const episodeSlice = createSlice({
       state.response = payload;
       state.pending = false;
       state.characters = [];
+      state.searchedCharacters = [];
     });
     builder.addCase(getEpisodeAsync.pending, (state) => {
       state.pending = true;
