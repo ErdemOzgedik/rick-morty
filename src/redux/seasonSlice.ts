@@ -40,6 +40,9 @@ export const seasonSlice = createSlice({
     getSeason: (state, action) => {
       state.response = action.payload;
     },
+    updateSeason: (state, action) => {
+      state.current = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getSeasonAsync.fulfilled, (state, { payload }) => {
@@ -56,5 +59,5 @@ export const seasonSlice = createSlice({
   },
 });
 
-export const { getSeason } = seasonSlice.actions;
+export const { getSeason, updateSeason } = seasonSlice.actions;
 export default seasonSlice.reducer;
