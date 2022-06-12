@@ -1,23 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import Back from "../components/Back";
 import Card from "../components/Card";
+import SearchField from "../components/SearchField";
+
+import { RootState } from "../redux/store";
 import {
   getEpisodeAsync,
   getEpisodeCharacterAsync,
+  searchCharacters,
   sortCharacters,
 } from "../redux/episodeSlice";
-import { RootState } from "../redux/store";
 
 function Episode() {
   const { id } = useParams<string>();
   const dispatch = useDispatch();
   const episode = useSelector((state: RootState) => state.episode);
+  const [term, setTerm] = useState("");
 
   const handleSort = () => {
     dispatch(sortCharacters());
   };
+
+  useEffect(() => {
+    dispatch(searchCharacters(term));
+  }, [dispatch, term]);
 
   useEffect(() => {
     if (id && id !== episode.response.id.toString()) {
@@ -69,10 +78,7 @@ function Episode() {
 
       <div className="m-auto flex flex-col w-4/5">
         <div className="mt-4 flex flex-col lg:flex-row gap-4">
-          <input
-            type="text"
-            className="w-full p-4 text-gray-900 rounded-lg bg-gray-50 sm:text-md"
-          />
+          <SearchField term={term} setTerm={setTerm} />
           <div
             onClick={handleSort}
             className="w-full text-center bg-black opacity-80 rounded-lg text-yellow-400 p-4 cursor-pointer"
@@ -82,7 +88,7 @@ function Episode() {
         </div>
 
         <div className="flex flex-row justify-around flex-wrap">
-          {episode.characters.map((character) => (
+          {episode.searchedCharacters.map((character) => (
             <Card key={character.id} character={character}></Card>
           ))}
         </div>

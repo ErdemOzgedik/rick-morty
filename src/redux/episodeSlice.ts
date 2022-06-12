@@ -26,6 +26,7 @@ type Example = {
   pending: boolean;
   error: boolean;
   characters: Character[];
+  searchedCharacters: Character[];
 };
 
 const initialState: Example = {
@@ -41,6 +42,7 @@ const initialState: Example = {
   pending: false,
   error: false,
   characters: [],
+  searchedCharacters: [],
 };
 
 export const episodeSlice = createSlice({
@@ -48,9 +50,16 @@ export const episodeSlice = createSlice({
   initialState: initialState,
   reducers: {
     sortCharacters: (state) => {
-      state.characters = [...state.characters].sort((a, b) =>
+      state.searchedCharacters = [...state.searchedCharacters].sort((a, b) =>
         a.name.localeCompare(b.name)
       );
+    },
+    searchCharacters: (state, action) => {
+      state.searchedCharacters = [...state.characters].filter((character) => {
+        return character.name
+          .toLowerCase()
+          .includes((action.payload as string).toLowerCase());
+      });
     },
   },
   extraReducers: (builder) => {
@@ -70,6 +79,7 @@ export const episodeSlice = createSlice({
       getEpisodeCharacterAsync.fulfilled,
       (state, { payload }) => {
         state.characters = [...state.characters, payload];
+        state.searchedCharacters = [...state.searchedCharacters, payload];
         state.pending = false;
       }
     );
@@ -83,5 +93,5 @@ export const episodeSlice = createSlice({
   },
 });
 
-export const { sortCharacters } = episodeSlice.actions;
+export const { sortCharacters, searchCharacters } = episodeSlice.actions;
 export default episodeSlice.reducer;
