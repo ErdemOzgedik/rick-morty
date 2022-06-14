@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Character, Episode, EpisodeInitial } from "../types/apitypes";
+import { Character, EpisodeInitial } from "../types/apitypes";
 import { EPISODE_ASYNC, EPISODE_CHARACTER_ASYNC } from "../types/constants";
 import { GetCharacter, GetEpisode } from "./apiCalls";
 
@@ -14,10 +14,14 @@ export const getEpisodeCharacterAsync = createAsyncThunk(
 
 export const getEpisodeAsync = createAsyncThunk(
   EPISODE_ASYNC,
-  async (id: string): Promise<Episode> => {
-    const response = await GetEpisode(id);
+  async (id: string, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const response = await GetEpisode(id);
 
-    return response;
+      return fulfillWithValue(response);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );
 
@@ -32,7 +36,11 @@ const initialState: EpisodeInitial = {
     air_date: "",
   },
   pending: false,
-  error: false,
+  error: {
+    code: "",
+    message: "",
+    stack: "",
+  },
   characters: [],
   searchedCharacters: [],
 };
@@ -56,7 +64,12 @@ export const episodeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getEpisodeAsync.fulfilled, (state, { payload }) => {
-      state.response = payload;
+      state.response = payload.payload;
+      state.error = {
+        code: "",
+        message: "",
+        stack: "",
+      };
       state.pending = false;
       state.characters = [];
       state.searchedCharacters = [];
@@ -64,8 +77,12 @@ export const episodeSlice = createSlice({
     builder.addCase(getEpisodeAsync.pending, (state) => {
       state.pending = true;
     });
-    builder.addCase(getEpisodeAsync.rejected, (state) => {
-      state.error = true;
+    builder.addCase(getEpisodeAsync.rejected, (state, action) => {
+      state.error = {
+        code: action.error.code,
+        message: action.error.message,
+        stack: action.error.stack,
+      };
       state.pending = false;
     });
     builder.addCase(
@@ -74,13 +91,22 @@ export const episodeSlice = createSlice({
         state.characters = [...state.characters, payload];
         state.searchedCharacters = [...state.searchedCharacters, payload];
         state.pending = false;
+        state.error = {
+          code: "",
+          message: "",
+          stack: "",
+        };
       }
     );
     builder.addCase(getEpisodeCharacterAsync.pending, (state) => {
       state.pending = true;
     });
-    builder.addCase(getEpisodeCharacterAsync.rejected, (state) => {
-      state.error = true;
+    builder.addCase(getEpisodeCharacterAsync.rejected, (state, action) => {
+      state.error = state.error = {
+        code: action.error.code,
+        message: action.error.message,
+        stack: action.error.stack,
+      };
       state.pending = false;
     });
   },

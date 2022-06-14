@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
 import Character from "./pages/Character";
 import Episode from "./pages/Episode";
 import Home from "./pages/Home";
+
 import { getSeasonAsync } from "./redux/seasonSlice";
 import { RootState } from "./redux/store";
 

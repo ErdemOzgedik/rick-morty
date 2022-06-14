@@ -54,7 +54,11 @@ export type CharacterInitial = {
 export type EpisodeInitial = {
   response: Episode;
   pending: boolean;
-  error: boolean;
+  error: {
+    code: string | undefined;
+    message: string | undefined;
+    stack: string | undefined;
+  };
   characters: Character[];
   searchedCharacters: Character[];
 };
@@ -63,5 +67,9 @@ export type SeasonInitial = {
   current: string;
   response: SeasonResponse;
   pending: boolean;
-  error: boolean;
+  error: {
+    code: string | undefined;
+    message: string | undefined;
+    stack: string | undefined;
+  };
 };

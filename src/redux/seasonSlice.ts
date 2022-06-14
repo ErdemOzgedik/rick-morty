@@ -1,14 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { SeasonInitial, SeasonResponse } from "../types/apitypes";
+
+import { SeasonInitial } from "../types/apitypes";
 import { SEASON_ASYNC } from "../types/constants";
 import { GetSeason } from "./apiCalls";
 
+type APIErrorResponse = {
+  error: string;
+};
+
 export const getSeasonAsync = createAsyncThunk(
   SEASON_ASYNC,
-  async (id: string): Promise<SeasonResponse> => {
-    const response = await GetSeason(id);
+  async (id: string, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const response = await GetSeason(id);
 
-    return response;
+      return fulfillWithValue(response);
+    } catch (error) {
+      return rejectWithValue(error as APIErrorResponse);
+    }
   }
 );
 
@@ -24,7 +33,11 @@ const initialState: SeasonInitial = {
     results: [],
   },
   pending: false,
-  error: false,
+  error: {
+    code: "",
+    message: "",
+    stack: "",
+  },
 };
 
 export const seasonSlice = createSlice({
@@ -39,15 +52,24 @@ export const seasonSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getSeasonAsync.fulfilled, (state, { payload }) => {
-      state.response = payload;
+    builder.addCase(getSeasonAsync.fulfilled, (state, action) => {
+      state.response = action.payload.payload;
       state.pending = false;
+      state.error = {
+        code: "",
+        message: "",
+        stack: "",
+      };
     });
     builder.addCase(getSeasonAsync.pending, (state) => {
       state.pending = true;
     });
-    builder.addCase(getSeasonAsync.rejected, (state) => {
-      state.error = true;
+    builder.addCase(getSeasonAsync.rejected, (state, action) => {
+      state.error = {
+        code: action.error.code,
+        message: action.error.message,
+        stack: action.error.stack,
+      };
       state.pending = false;
     });
   },

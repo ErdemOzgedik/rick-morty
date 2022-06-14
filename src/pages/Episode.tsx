@@ -44,6 +44,10 @@ function Episode() {
       });
   }, [dispatch, episode.response.characters, episode.characters]);
 
+  if (episode.error.message) {
+    throw new Error(episode.error.message);
+  }
+
   return (
     <div className="container m-auto flex flex-col shadow-2xl">
       <Back />

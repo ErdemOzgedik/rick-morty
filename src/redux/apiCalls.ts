@@ -8,7 +8,7 @@ export const GetSeason = async (id: string): Promise<SeasonResponse> => {
 };
 
 export const GetEpisode = async (id: string): Promise<Episode> => {
-  const response = await instance.get(`episode/${id}`);
+  const response = await instance.get(`episode00/${id}`);
 
   return response.data;
 };
